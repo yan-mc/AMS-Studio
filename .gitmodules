@@ -1,0 +1,28 @@
+[submodule "launcher"]
+	path = launcher
+	url = https://github.com/yan-mc/ams-launcher.git
+	branch = main
+[submodule "kernel"]
+	path = kernel
+	url = https://github.com/yan-mc/ams-harness.git
+	branch = main
+[submodule "plugins"]
+	path = plugins
+	url = https://github.com/yan-mc/ams-plugins.git
+	branch = main
+[submodule "services"]
+	path = services
+	url = https://github.com/yan-mc/ams-services.git
+	branch = main
+[submodule "tools"]
+	path = tools
+	url = https://github.com/yan-mc/ams-tools.git
+	branch = main
+[submodule "docs"]
+	path = docs
+	url = https://github.com/yan-mc/ams-docs.git
+	branch = main
+[submodule "release"]
+	path = release
+	url = https://github.com/yan-mc/ams-release.git
+	branch = main

@@ -1,68 +1,53 @@
 # AMS Studio
 
-> **本地优先的 AI 音乐工作站。**  
-> 一个桌面启动器 + 一个可插件化的 AI 音乐内核 + 本地音频服务 + 模型转换工具。所有用户数据留在安装目录内，不依赖云端账号，不碰现有 DSH 的 `.dsh`。
+> 本地优先的 Windows AI 音乐工作站。桌面启动器 + DeepSeek Harness Kernel + Cordis 插件 + FastAPI Gateway + RVC/pymss/TTS 本地能力。所有用户数据位于安装目录 data，不写 C 盘 AppData。
 
-AMS Studio 的目标是让“炼制自己的音色、分离人声、变声、换源、TTS、V 家填词”这些流程在一个本地工作台里跑通，同时允许用户自带 DeepSeek Key/兼容端点。
+## 当前状态（2026-10-25）
 
-## 架构
+- 阶段 A–F 核心完成；G 发布收尾中。
+- 公开组件 feed：2042。
+- setup：2,438,343 字节，SHA256 D2DEFF5125CD857F41D9CE7A7C689E79A1DDA88AADA55F486DF4AE6060338B45。
+- 本机安装：F:/AMS-Studio；源码：F:/Deepseek_harness/AI音乐处理/08_项目代码。
+- 用户音色：曼波；测试工程已移入 data/trash/projects。
+- Kernel 当前会话 watchdog：data/tools/kernel-watchdog.ps1。
 
-```text
-AMS Studio Launcher (桌面入口/安装更新)
-        │
-        ├── AMS Kernel (DeepSeek Harness fork)
-        │       └── AMS 音乐插件 (功能页 + Host bridge)
-        │
-        ├── 本地 Gateway (FastAPI，127.0.0.1)
-        │       ├── RVC / pymss / MSVC 任务
-        │       └── artifacts / voices
-        │
-        └── data/ (安装目录内：kernel、plugins、voices、artifacts、logs)
-```
+## 完整记录
+
+- [PROJECT_RECORD.md](PROJECT_RECORD.md)（唯一总记录）
+- [docs/PROJECT_RECORD.md](docs/PROJECT_RECORD.md)（docs 子仓库镜像）
 
 ## 子模块
 
 | 目录 | 仓库 | 作用 |
 |---|---|---|
-| `launcher/` | [ams-launcher](https://github.com/yan-mc/ams-launcher) | 桌面启动器、组件安装/更新、内核/Gateway 生命周期 |
-| `kernel/` | [ams-harness](https://github.com/yan-mc/ams-harness) | AMS Kernel：DSH fork，无登录直接工作区 |
-| `plugins/` | [ams-plugins](https://github.com/yan-mc/ams-plugins) | 音乐工作台 UI + Host 工具桥 |
-| `services/` | [ams-services](https://github.com/yan-mc/ams-services) | 本地 Gateway 与 RVC/pymss/MSVC 服务 |
-| `tools/` | [ams-tools](https://github.com/yan-mc/ams-tools) | MSVC/XINYU_AI → RVC pth 等转换工具 |
-| `docs/` | [ams-docs](https://github.com/yan-mc/ams-docs) | 设计、计划、测试、发布、事故记录 |
-| `release/` | [ams-release](https://github.com/yan-mc/ams-release) | 签名更新 feed、Release 资产与打包脚本 |
+| launcher | ams-launcher | Tauri 启动器、组件安装、Kernel 生命周期 |
+| kernel | ams-harness | AMS Kernel（DSH fork） |
+| plugins | ams-plugins | 音乐 UI + Host 桥接 |
+| services | ams-services | Gateway、RVC/pymss/TTS/train/evaluate/mix |
+| tools | ams-tools | MSVC/模型转换工具 |
+| docs | ams-docs | 设计、计划、验证、发布、事故记录 |
+| release | ams-release | feed、签名、发布与打包 |
 
-## 克隆
+## 安装
 
-本总仓库与大部分子仓库目前是 **private**，需要 yan-mc 账号凭据：
+1. 运行 setup；
+2. 安装/更新组件；
+3. 启动 Kernel；
+4. 所有数据留在安装目录 data。
 
-```powershell
-git clone --recurse-submodules https://github.com/yan-mc/AMS-Studio.git
-cd AMS-Studio
-```
+## 已知限制
 
-已克隆后更新：
+- 干净 VM/卸载未完全验收；
+- Kernel 无系统级常驻；
+- F 插件未拆；
+- 混音不是完整 DAW；
+- VC 长稳未做；
+- feed CDN 可能延迟；
+- 测试数据集仍占用 data/datasets。
 
-```powershell
-git pull --recurse-submodules
-git submodule update --init --recursive
-```
+## 安全
 
-## 当前状态
-
-- M0/M1/M2 方案、启动器、内核、插件、Gateway、更新 feed 已完成。
-- AMS Kernel 已移除登录/引导，只保留连接设置（网址 + Key）。
-- 所有 AMS 数据位于安装目录下 `data`，不写入现有 DSH 的 `.dsh`。
-- 公开更新源：[ams-release](https://github.com/yan-mc/ams-release)。
-
-## 文档入口
-
-- [安装与连接设置](https://github.com/yan-mc/ams-docs)
-- [生命周期验证与清理](https://github.com/yan-mc/ams-docs)
-- 各子仓库 README 的第一屏说明其职责。
-
-## 开发约定
-
-- 子仓库独立开发、独立提交；总仓库只更新 submodule 指针。
-- 提交前确保对应子仓库 README/描述与实际职责一致。
-- 不提交用户音源、模型权重、生成音频或 API Key。
+- 不写 C 盘用户目录；
+- 不做目录递归删除；
+- 删除前确认路径，优先移动到隔离目录；
+- 用户音色/模型/真实项目不进入 Git。

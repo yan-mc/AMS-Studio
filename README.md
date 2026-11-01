@@ -15,7 +15,7 @@ Gateway 调度 GPU 任务，插件提供音乐工作流页面，Agent 让你一�
 
 当前发布：**v2.0.1**，feed sequence **2058**，默认 TTS 引擎为 **GPT-SoVITS V5turbo（48 kHz）**。
 
-> 历史伞仓：本仓库是总入口与子模块索引；可交付源码以各子仓库 `main` 为准，最新发布资产在 [ams-release](https://github.com/yan-mc/ams-release/releases)。
+> 总入口：本仓库是产品总览与子模块索引；可交付源码以各子仓库 `main` 为准，最新发布资产在 [ams-release](https://github.com/yan-mc/ams-release/releases)。历史阶段文档已归档到 `archive/legacy-2026-10/`。
 
 ## 核心能力
 
@@ -41,7 +41,7 @@ Gateway 调度 GPU 任务，插件提供音乐工作流页面，Agent 让你一�
 ## 快速开始
 
 1. 从 [Latest Release](https://github.com/yan-mc/ams-release/releases/latest) 下载 Windows Setup。
-2. 安装到有足够空间的磁盘（如 `F:\AMS-Studio`，不要装到 C: 用户目录）。
+2. 安装到有足够空间的磁盘（如 `F:\AMS-Studio`，实际安装目录为 `F:\AMS-Studio\嘉音Studio`，不要装到 C: 用户目录）。
 3. 启动器内检查组件 → 下载/安装 runtime 与默认音色。
 4. 启动 Gateway → 启动 Kernel → 进入“AMS 音乐”工作台。
 5. 新建会话，选择“音乐制作”，直接输入需求。
@@ -52,6 +52,10 @@ Gateway 调度 GPU 任务，插件提供音乐工作流页面，Agent 让你一�
 - 最新发布：[yan-mc/ams-release releases](https://github.com/yan-mc/ams-release/releases)
 - 当前版本：**嘉音Studio v2.0.1**（feed 2058）
 - 文档：[ams-docs](https://github.com/yan-mc/ams-docs)
+
+## 历史文档
+
+早期阶段验收、缺陷、资产清单与旧 TTS 文档已移到 [`archive/legacy-2026-10/`](archive/legacy-2026-10/README.md)，仅作证据保留；当前设计与说明请查看 [ams-docs](https://github.com/yan-mc/ams-docs)。
 
 ## 说明
 

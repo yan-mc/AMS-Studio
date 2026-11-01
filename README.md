@@ -57,4 +57,4 @@ Gateway 调度 GPU 任务，插件提供音乐工作流页面，Agent 让你一�
 
 - 所有音乐数据默认留在安装目录 `data/`；Gateway 只监听 `127.0.0.1`。
 - 本项目为本地优先工具，不提供云端上传；使用第三方模型/音频时请遵守各自许可。
-- License: 各子仓库分别声明许可；第三方组件/模型遵循各自许可证。DeepSeek Harness 为 DeepSeek 商标，本项目基于其 MIT 代码构建。
+- License: MIT (see `LICENSE`).
